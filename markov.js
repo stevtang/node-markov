@@ -49,7 +49,7 @@ class MarkovMachine {
     // TODO: implement this!
     // - start at the first word in the input text
     // - find a random word from the following-words of that
-    // - repeat until reaching the terminal null
+    // - repeat until reaching the terminal null  
 
     let word = this.words[0];
     let text = word;
@@ -64,3 +64,7 @@ class MarkovMachine {
     return text;
   }
 }
+
+module.exports = {
+  MarkovMachine
+};
