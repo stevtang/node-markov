@@ -1,4 +1,7 @@
+"use strict";
 /** Textual markov chain generator. */
+
+const _ = require('lodash');
 
 class MarkovMachine {
   /** Build markov machine; read in text.*/
@@ -25,19 +28,16 @@ class MarkovMachine {
    * */
 
   getChains() {
-
     let chains = {};
-
     for (let i = 0; i < this.words.length; i++) {
       let word = this.words[i];
       let nextWord = this.words[i + 1];
       if (nextWord === undefined) {
-        chains[word] = [null];
-      } else {
-        chains[word] = chains[word].concat([nextWord])
-          ? word in chains
-          : [nextWord];
+        nextWord = null;
       }
+      chains[word] = chains[word] === undefined
+        ? [nextWord]
+        : chains[word].concat([nextWord]);
     }
     return chains;
   }
@@ -50,5 +50,17 @@ class MarkovMachine {
     // - start at the first word in the input text
     // - find a random word from the following-words of that
     // - repeat until reaching the terminal null
+
+    let word = this.words[0];
+    let text = word;
+    let nextWord;
+    while (word !== null) {
+      nextWord = _.sample(this.chains[word]);
+      if (nextWord !== null) {
+        text += (" " + nextWord);
+      }
+      word = nextWord;
+    }
+    return text;
   }
 }

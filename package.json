@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/stevtang/node-markov/issues"
   },
-  "homepage": "https://github.com/stevtang/node-markov#readme"
+  "homepage": "https://github.com/stevtang/node-markov#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
 }
